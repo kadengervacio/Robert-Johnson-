@@ -1,0 +1,28 @@
+import RPi.GPIO as GPIO
+import time
+import os
+import random
+GPIO.setmode(GPIO.BCM) #use the GPIO numbering
+GPIO.setwarnings(False) # Avoids warning channel is already in use
+#led=pin18
+#button=26
+#button led=16
+i_count = 0 # set up for correct grammar in notification below
+GPIO.setup(18,GPIO.OUT) # sets up pin 18 to output
+GPIO.setup(26, GPIO.IN, pull_up_down=GPIO.PUD_UP) #sets up pin 26 as a button
+GPIO.setup(16,GPIO.OUT) #sets up pin 16 to output
+while True:
+        GPIO.output(16, True) # turn on button led
+        input_state = GPIO.input(26) # primes the button!
+        if input_state == False:
+            i_count = i_count + 1
+            GPIO.output(16, False) # turns off button led
+            GPIO.output(18,True) #Turn on LED
+           
+            GPIO.output(18,False) #turn off LED
+            if i_count == 1:
+                print("History Bot has been activated " + str(i_count) + " time!")
+            else:
+                print("History Bot has been activated " + str(i_count) + " times!")
+            GPIO.output(16, True) # turns button led back on
+            time.sleep(0.2)
