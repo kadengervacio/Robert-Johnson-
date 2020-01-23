@@ -1,0 +1,144 @@
+# John Harney, Centre College, updated 10.21.19
+
+# this code exists thanks to Texas-Mark on the official RPi forums,
+# he shared the code the original (PIR sensor) iteration of this was based on at
+# https://www.raspberrypi.org/forums/viewtopic.php?t=176241
+
+# button code version relied heavily on Soren at
+# https://raspberrypihq.com/use-a-push-button-with-raspberry-pi-gpio/
+
+# this is the base code for all history bots as of 10.21.19
+
+import RPi.GPIO as GPIO
+import time
+import os
+import random
+import pygame
+from time import sleep
+random.seed()
+
+pygame.init()
+GPIO.setmode(GPIO.BOARD) #use the board numbering
+GPIO.setwarnings(False) # Avoids warning channel is already in use
+
+led = 38 #GPIO pin 20
+led = 40 # GPIO pin 21
+button = 12 # GPIO pin 18
+button_led = 37 # GPIO pin 26
+
+GPIO.setup(38,GPIO.OUT)
+GPIO.setup(40,GPIO.OUT) # sets up pin 21 to output
+GPIO.setup(12, GPIO.IN, pull_up_down=GPIO.PUD_UP) #sets up pin 18 as a button
+GPIO.setup(37,GPIO.OUT) #sets up pin 26 to output
+GPIO.setup(11,GPIO.OUT)  # Sets up pin 11 to an output (instead of an input)
+pwm = GPIO.PWM(11, 50)     # Sets up pin 11 as a PWM pin
+          
+myCmd1 = 'Johnson1.mp3' # hellhound on my trail 
+myCmd2 = 'johnson2.mp3' # crossroad Blues 
+myCmd3 = 'johnson3.mp3' #riverside blues
+myCmd4 = 'Johnson4.mp3' #me and the devil blues
+myCmd5 = 'Johnson5.mp3' #preachin blues 
+myList = [myCmd1, myCmd2, myCmd3, myCmd4, myCmd5]
+
+i_count = 0 # set up for correct grammar in notification below
+
+while True:
+    GPIO.output(37, True) # turn on button led
+    input_state = GPIO.input(12) # primes the button!
+    pwm.start(0)
+    if input_state == False:
+        i_count = i_count + 1
+        GPIO.output(37, False) # turns off button led
+        GPIO.output(40, True) #Turn on LED
+        GPIO.output(38, True) #turn on led 2
+        music = pygame.mixer.music.load(random.choice(myList))
+       
+        pygame.mixer.music.play(0)
+        counter = 0
+        run = True
+        
+        pwm.ChangeDutyCycle(5) # left -90 deg position
+        sleep(1)
+
+        pwm.ChangeDutyCycle(7) # right +90 deg position
+        sleep(1)
+
+        pwm.ChangeDutyCycle(5) # left -90 deg position
+        sleep(1)
+
+        pwm.ChangeDutyCycle(7) # right +90 deg position
+        sleep(1)
+        
+        pwm.ChangeDutyCycle(5) # left -90 deg position
+        sleep(1)
+
+        pwm.ChangeDutyCycle(7) # right +90 deg position
+        sleep(1)
+        
+        pwm.ChangeDutyCycle(5) # left -90 deg position
+        sleep(1)
+
+        pwm.ChangeDutyCycle(7) # right +90 deg position
+        sleep(1)
+        
+        pwm.ChangeDutyCycle(5) # left -90 deg position
+        sleep(1)
+
+        pwm.ChangeDutyCycle(7) # right +90 deg position
+        sleep(1)
+        
+        pwm.ChangeDutyCycle(5) # left -90 deg position
+        sleep(1)
+
+        pwm.ChangeDutyCycle(7) # right +90 deg position
+        sleep(1)
+
+        pwm.ChangeDutyCycle(5) # left -90 deg position
+        sleep(1)
+
+        pwm.ChangeDutyCycle(7) # right +90 deg position
+        sleep(1)
+        
+        pwm.ChangeDutyCycle(5) # left -90 deg position
+        sleep(1)
+
+        pwm.ChangeDutyCycle(7) # right +90 deg position
+        sleep(1)
+        
+        pwm.ChangeDutyCycle(5) # left -90 deg position
+        sleep(1)
+
+        pwm.ChangeDutyCycle(7) # right +90 deg position
+        sleep(1)
+        
+        pwm.ChangeDutyCycle(5) # left -90 deg position
+        sleep(1)
+
+        pwm.ChangeDutyCycle(7) # right +90 deg position
+        sleep(1)
+        
+        pwm.ChangeDutyCycle(5) # left -90 deg position
+        sleep(1)
+
+        pwm.ChangeDutyCycle(7) # right +90 deg position
+        sleep(1)
+        
+        pwm.ChangeDutyCycle(5) # left -90 deg position
+        sleep(1)
+
+        pwm.ChangeDutyCycle(7) # right +90 deg position
+        sleep(1)
+           
+        GPIO.output(40, False) #turn off LED
+        GPIO.output(38, False) #Turn off led two
+        
+        if i_count == 1:
+            print("History Bot has been activated " + str(i_count) + " time!")
+        else:
+            print("History Bot has been activated " + str(i_count) + " times!")
+        GPIO.output(37, True) # turns button led back on
+        time.sleep(2)
+
+pwm.stop()
+GPIO.cleanup()
+pygame.quit()
