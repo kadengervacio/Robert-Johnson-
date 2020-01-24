@@ -8,8 +8,10 @@
 #servo code relied on the website https://projects.raspberrypi.org/en/projects/grandpa-scarer/4
 
 # button code version relied heavily on Soren at
-# https://raspberrypihq.com/use-a-push-button-with-raspberry-pi-gpio/
-
+# https://raspberrypihq.com/use-a-push-button-with-raspberry-pi-gpio/ by the name of 
+#Grandpa Scarer
+#Code also relied on Fred as well
+#pygame code was provided by Dr. Toth we thank him for that 
 # this is the base code for all history bots as of 10.21.19
 
 import RPi.GPIO as GPIO
