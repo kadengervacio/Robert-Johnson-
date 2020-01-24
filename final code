@@ -1,8 +1,11 @@
-# John Harney, Centre College, updated 10.21.19
+#Austin Mitchell and Kaden Gervacio 
+#Code thanks to John Harney, Centre College, updated 10.21.19
 
 # this code exists thanks to Texas-Mark on the official RPi forums,
 # he shared the code the original (PIR sensor) iteration of this was based on at
 # https://www.raspberrypi.org/forums/viewtopic.php?t=176241
+
+#servo code relied on the website https://projects.raspberrypi.org/en/projects/grandpa-scarer/4
 
 # button code version relied heavily on Soren at
 # https://raspberrypihq.com/use-a-push-button-with-raspberry-pi-gpio/
